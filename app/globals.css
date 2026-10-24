@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #1B3A5C;
+  --color-accent: #F59E0B;
+  --color-cta: #16A34A;
+  --color-bg: #F8FAFC;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-primary);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+/* react-day-picker custom accent colors */
+.rdp-root {
+  --rdp-accent-color: #F59E0B;
+  --rdp-accent-background-color: #FEF3C7;
+}
