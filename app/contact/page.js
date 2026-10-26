@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-export const metadata = undefined; // must be server component for metadata — moved to layout
-
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
