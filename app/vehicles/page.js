@@ -16,6 +16,8 @@ async function getVehicles() {
   }
 }
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Our Fleet — RAE Car Rentals Antigua',
   description: 'Browse our fleet of well-maintained rental vehicles in Antigua. Choose from economy, SUV, or minivan.',
