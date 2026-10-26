@@ -19,10 +19,10 @@ export default function Navbar() {
     <nav className="bg-[#1B3A5C] text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 text-white no-underline">
-          <span className="text-2xl font-extrabold tracking-tight">RAE</span>
-          <span className="text-[#F59E0B] font-medium text-sm leading-tight">
-            Rentals<br />& Taxi
+        <Link href="/" className="flex items-center gap-1 text-white no-underline">
+          <span className="text-lg font-extrabold tracking-tight leading-tight">Everyone Loves Raymond</span>
+          <span className="text-[#F59E0B] font-semibold text-sm leading-tight ml-1">
+            Taxi &amp; Rentals
           </span>
         </Link>
 

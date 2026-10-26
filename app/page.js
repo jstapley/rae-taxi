@@ -46,15 +46,15 @@ export default function HomePage() {
 
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto py-20">
           <div className="inline-block bg-[#F59E0B] text-[#1B3A5C] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
-            Antigua & Barbuda
+            Raymond&apos;s · Antigua
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-            Explore Antigua{' '}
-            <span className="text-[#F59E0B]">Your Way</span>
+            Antigua&apos;s Private{' '}
+            <span className="text-[#F59E0B]">Luxury Transportation</span>
           </h1>
           <p className="text-blue-200 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Premium car rentals &amp; reliable taxi services across the island.
-            From airport transfers to full-day island exploration.
+            Raymond&apos;s delivers prompt, professional shuttle service and car rentals across Antigua.
+            Airport transfers, island tours, private transportation — always with a smile.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
