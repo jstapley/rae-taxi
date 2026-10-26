@@ -1,14 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-const vehicleImages = {
-  RAV4: '/vehicles/rav4.webp',
-  Voxy: '/vehicles/toyota-voxy.jpg',
-  Fit:  '/vehicles/honda-fit.jpg',
-};
-
 export default function VehicleCard({ vehicle }) {
-  const imageSrc = vehicleImages[vehicle.name] || null;
+  const imageSrc = vehicle.image_url || null;
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-shadow flex flex-col">
