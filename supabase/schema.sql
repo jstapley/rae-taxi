@@ -78,6 +78,15 @@ insert into "rae-taxi".vehicles (name, make, model, year, seats, daily_rate, des
   ('Voxy', 'Toyota', 'Voxy', 2025, 8, 110.00, 'Brand new spacious minivan ideal for groups and families. Features modern amenities.'),
   ('Fit', 'Honda', 'Fit', 2018, 4, 55.00, 'Economical and easy to drive. Great fuel efficiency for getting around Antigua.');
 
+create table "rae-taxi".contact_messages (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text,
+  phone text,
+  message text not null,
+  created_at timestamptz default now()
+);
+
 insert into "rae-taxi".insurance_options (name, description, price_per_day, sort_order) values
   ('None', 'No additional insurance. Driver assumes full liability.', 0.00, 0),
   ('Basic CDW', 'Collision Damage Waiver — reduces your liability in case of an accident.', 15.00, 1),
