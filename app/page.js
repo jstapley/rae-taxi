@@ -2,14 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const fleetPreview = [
-  { name: 'Toyota RAV4', year: 2013, seats: 5, rate: 75,  image: '/vehicles/rav4.webp' },
-  { name: 'Toyota Voxy', year: 2025, seats: 8, rate: 110, image: '/vehicles/toyota-voxy.jpg' },
-  { name: 'Honda Fit',   year: 2018, seats: 4, rate: 55,  image: '/vehicles/honda-fit.jpg' },
-];
-
-const taxiRoutes = [
-  { from: 'V.C. Bird International Airport', to: 'Jolly Beach', price: 50 },
-  { from: 'V.C. Bird International Airport', to: 'English Harbour', price: 75 },
+  { name: 'Toyota RAV4',  year: 2022, seats: 5, rate: 75, image: '/vehicles/rav4.webp' },
+  { name: 'Honda Vezel',  year: 2020, seats: 5, rate: 70, image: null },
+  { name: 'Subaru XV',    year: 2019, seats: 5, rate: 65, image: null },
 ];
 
 const features = [
@@ -113,13 +108,19 @@ export default function HomePage() {
                 className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
               >
                 <div className="relative h-48 bg-gray-100">
-                  <Image
-                    src={v.image}
-                    alt={v.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
+                  {v.image ? (
+                    <Image
+                      src={v.image}
+                      alt={v.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
+                      <span className="text-6xl">🚗</span>
+                    </div>
+                  )}
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-2">
@@ -152,48 +153,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Taxi Routes */}
+      {/* Taxi CTA */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#1B3A5C] mb-3">
-            Fixed-Price Taxi Routes
+            Private Taxi Service Across Antigua
           </h2>
-          <p className="text-gray-500 mb-10">
-            No surprises — transparent pricing from the airport to popular destinations.
+          <p className="text-gray-500 mb-10 max-w-2xl mx-auto">
+            Airport arrivals, hotel transfers, island tours — Raymond provides prompt, professional private transportation.
+            All prices are regulated and based on 1–2 passengers. Request a quote and Raymond will respond via WhatsApp.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            {taxiRoutes.map((r) => (
-              <div
-                key={r.to}
-                className="flex items-center justify-between bg-[#F8FAFC] border border-gray-200 rounded-xl px-6 py-5 hover:border-[#F59E0B] transition-colors"
-              >
-                <div className="text-left">
-                  <div className="text-xs text-gray-400 uppercase tracking-wide mb-1">From</div>
-                  <div className="font-semibold text-[#1B3A5C] text-sm">{r.from}</div>
-                  <div className="text-xs text-gray-400 mt-2 uppercase tracking-wide">To</div>
-                  <div className="font-semibold text-[#1B3A5C]">{r.to}</div>
-                </div>
-                <div className="text-3xl font-extrabold text-[#F59E0B]">${r.price}</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+            {[
+              { icon: '✈️', label: 'Airport Arrivals', desc: 'Pre-arranged pickup with meet & greet. Regulated fares.' },
+              { icon: '🏨', label: 'Hotel Transfers', desc: 'Door-to-door service to any resort or hotel on the island.' },
+              { icon: '🌴', label: 'Island Tours', desc: 'Full or half-day private tours. Raymond knows every corner of Antigua.' },
+            ].map((item) => (
+              <div key={item.label} className="bg-[#F8FAFC] rounded-2xl px-6 py-7 border border-gray-100 text-center">
+                <div className="text-4xl mb-3">{item.icon}</div>
+                <div className="font-bold text-[#1B3A5C] mb-1">{item.label}</div>
+                <div className="text-sm text-gray-500">{item.desc}</div>
               </div>
             ))}
-            <div className="md:col-span-2 flex items-center justify-between bg-[#1B3A5C] text-white rounded-xl px-6 py-5">
-              <div className="text-left">
-                <div className="font-semibold">Other Destinations</div>
-                <div className="text-blue-200 text-sm">Any location across Antigua</div>
-              </div>
-              <Link
-                href="/taxi"
-                className="bg-[#F59E0B] hover:bg-yellow-500 text-[#1B3A5C] font-bold px-5 py-2 rounded-lg text-sm transition-colors"
-              >
-                Get a Quote
-              </Link>
-            </div>
           </div>
           <Link
             href="/taxi"
             className="inline-block bg-[#16A34A] hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors shadow-md"
           >
-            Book a Taxi Now
+            Request a Taxi Quote
           </Link>
         </div>
       </section>
