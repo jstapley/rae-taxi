@@ -31,7 +31,7 @@ export default function ContactPage() {
                   <div>
                     <div className="font-semibold text-[#1B3A5C]">WhatsApp</div>
                     <a
-                      href="https://wa.me/12687345386"
+                      href="https://wa.me/12687345338"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#16A34A] hover:underline text-sm"
@@ -71,7 +71,7 @@ export default function ContactPage() {
               </div>
 
               <a
-                href="https://wa.me/12687345386"
+                href="https://wa.me/12687345338"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 w-full flex items-center justify-center gap-2 bg-[#16A34A] hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl transition-colors"

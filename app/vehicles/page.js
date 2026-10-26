@@ -71,7 +71,7 @@ export default async function VehiclesPage() {
             Message us on WhatsApp and we&apos;ll help you choose the right car for your trip.
           </p>
           <a
-            href="https://wa.me/12687345386"
+            href="https://wa.me/12687345338"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#16A34A] hover:bg-green-700 text-white font-bold px-8 py-3 rounded-xl transition-colors"

@@ -65,7 +65,7 @@ export default function HomePage() {
               Book a Taxi
             </Link>
             <a
-              href="tel:+12687345386"
+              href="tel:+12687345338"
               className="border-2 border-white text-white hover:bg-white hover:text-[#1B3A5C] font-bold px-8 py-4 rounded-xl text-lg transition-colors flex items-center justify-center gap-2"
             >
               <span className="text-xl">📞</span>
@@ -203,7 +203,7 @@ export default function HomePage() {
             <p className="text-green-100">Chat with us on WhatsApp — we usually respond within minutes.</p>
           </div>
           <a
-            href="https://wa.me/12687345386"
+            href="https://wa.me/12687345338"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white text-[#16A34A] font-bold px-8 py-4 rounded-xl text-lg hover:bg-green-50 transition-colors flex items-center gap-3 whitespace-nowrap shadow"

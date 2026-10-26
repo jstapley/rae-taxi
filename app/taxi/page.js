@@ -55,7 +55,7 @@ export default function TaxiPage() {
     // Open WhatsApp
     const message = buildWhatsAppMessage();
     const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/12687345386?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/12687345338?text=${encoded}`, '_blank');
   }
 
   return (
