@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
   try {
@@ -57,6 +60,32 @@ export async function POST(request) {
       .single();
 
     if (error) throw error;
+
+    // Send email notification (best effort)
+    try {
+      await resend.emails.send({
+        from: 'Everyone Loves Raymond <bookings@privateluxurytransportationantigua.com>',
+        to: 'rae.js.peters@gmail.com',
+        bcc: 'jeff@stapleyinc.com',
+        subject: `New Rental Booking — ${customer_name.trim()}`,
+        html: `
+          <h2>New Vehicle Rental Booking</h2>
+          <table cellpadding="6" style="font-family:sans-serif;font-size:14px;">
+            <tr><td><strong>Name</strong></td><td>${customer_name.trim()}</td></tr>
+            <tr><td><strong>Phone</strong></td><td>${customer_phone.trim()}</td></tr>
+            <tr><td><strong>Email</strong></td><td>${customer_email?.trim() || '—'}</td></tr>
+            <tr><td><strong>Pickup Date</strong></td><td>${pickup_date}</td></tr>
+            <tr><td><strong>Drop-off Date</strong></td><td>${dropoff_date}</td></tr>
+            <tr><td><strong>License #</strong></td><td>${license_number.trim()}</td></tr>
+            <tr><td><strong>License Country</strong></td><td>${license_country?.trim() || '—'}</td></tr>
+            <tr><td><strong>Total</strong></td><td>${total_amount ? '$' + total_amount + ' USD' : 'TBD'}</td></tr>
+            <tr><td><strong>Notes</strong></td><td>${notes?.trim() || '—'}</td></tr>
+          </table>
+        `,
+      });
+    } catch (emailErr) {
+      console.error('Email send failed:', emailErr.message);
+    }
 
     return NextResponse.json({ id: data.id, message: 'Booking request received' }, { status: 201 });
   } catch (err) {
