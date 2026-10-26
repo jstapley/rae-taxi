@@ -5,10 +5,21 @@ import Navbar from '@/components/Navbar';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'RAE Car Rentals & Taxi — Antigua',
+  title: "Everyone Loves Raymond — Private Luxury Transportation Antigua",
   description:
-    'Premium car rentals and reliable taxi services across Antigua. Explore the island on your own terms with RAE Rentals & Taxi.',
-  keywords: 'car rental Antigua, taxi Antigua, airport transfer Antigua, RAE Rentals',
+    "Raymond's private luxury transportation service in Antigua. Airport transfers, private shuttle, car rentals & island tours. Prompt service with a smile.",
+  keywords:
+    'private luxury transportation Antigua, private shuttle Antigua, airport transfer Antigua, car rental Antigua, taxi Antigua, Raymond Antigua',
+  metadataBase: new URL('https://www.privateluxurytransportationantigua.com'),
+  openGraph: {
+    title: "Everyone Loves Raymond — Private Luxury Transportation Antigua",
+    description:
+      "Raymond's private luxury transportation service in Antigua. Airport transfers, private shuttle, car rentals & island tours.",
+    url: 'https://www.privateluxurytransportationantigua.com',
+    siteName: "Everyone Loves Raymond — Taxi & Rentals",
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -21,11 +32,10 @@ export default function RootLayout({ children }) {
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-2">
-                RAE <span className="text-[#F59E0B]">Rentals & Taxi</span>
+                Everyone Loves Raymond <span className="text-[#F59E0B]">Taxi & Rentals</span>
               </h3>
               <p className="text-blue-200 text-sm">
-                Your trusted transport partner in Antigua. Car rentals and taxi services
-                island-wide.
+                Antigua&apos;s private luxury transportation service. Airport transfers, private shuttle &amp; car rentals island-wide.
               </p>
             </div>
             <div>
@@ -53,8 +63,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
           <div className="text-center text-blue-300 text-xs mt-8 border-t border-blue-800 pt-4">
-            &copy; {new Date().getFullYear()} RAE Car Rentals & Taxi. Antigua & Barbuda. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Everyone Loves Raymond — Taxi &amp; Rentals. Antigua &amp; Barbuda. All rights reserved.
           </div>
         </footer>
       </body>

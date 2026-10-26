@@ -19,8 +19,8 @@ async function getVehicles() {
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Our Fleet — RAE Car Rentals Antigua',
-  description: 'Browse our fleet of well-maintained rental vehicles in Antigua. Choose from economy, SUV, or minivan.',
+  title: 'Our Fleet — Private Luxury Car Rentals Antigua',
+  description: "Browse Raymond's fleet of private rental vehicles in Antigua. Toyota RAV4, Honda Vezel, Subaru XV — all air-conditioned. Book online today.",
 };
 
 export default async function VehiclesPage() {
