@@ -63,6 +63,9 @@ export default function VehicleCard({ vehicle }) {
               ${Number(vehicle.daily_rate).toFixed(0)}
             </span>
             <span className="text-sm text-gray-400">/day USD</span>
+            <div className="text-xs text-gray-400 mt-0.5">
+              2+ days · 1 day ${Number(vehicle.daily_rate) + 5}
+            </div>
           </div>
           <Link
             href={`/vehicles/${vehicle.id}`}

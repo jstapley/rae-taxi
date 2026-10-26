@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 const fleetPreview = [
   { name: 'Toyota RAV4',  year: 2013, seats: 5, rate: 75, image: '/vehicles/rav4.png' },
-  { name: 'Honda Vezel',  year: 2015, seats: 5, rate: 70, image: '/vehicles/honda-vezel.png' },
-  { name: 'Subaru XV',    year: 2014, seats: 5, rate: 65, image: '/vehicles/subaru-xv.png' },
+  { name: 'Honda Vezel',  year: 2015, seats: 5, rate: 75, image: '/vehicles/honda-vezel.png' },
+  { name: 'Subaru XV',    year: 2014, seats: 5, rate: 70, image: '/vehicles/subaru-xv.jpg' },
 ];
 
 const features = [
@@ -142,10 +142,13 @@ export default function HomePage() {
                     <span>{v.seats} seats</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-extrabold text-[#1B3A5C]">
-                      ${v.rate}
-                      <span className="text-sm font-normal text-gray-400">/day</span>
-                    </span>
+                    <div>
+                      <span className="text-2xl font-extrabold text-[#1B3A5C]">
+                        ${v.rate}
+                        <span className="text-sm font-normal text-gray-400">/day</span>
+                      </span>
+                      <div className="text-xs text-gray-400 mt-0.5">2+ days · 1 day ${v.rate + 5}</div>
+                    </div>
                     <Link
                       href="/vehicles"
                       className="bg-[#1B3A5C] hover:bg-blue-900 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
