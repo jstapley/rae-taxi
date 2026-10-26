@@ -56,7 +56,7 @@ export default function HomePage() {
               href="/vehicles"
               className="bg-[#16A34A] hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors shadow-lg"
             >
-              Browse Our Fleet
+              Book a Rental
             </Link>
             <Link
               href="/taxi"
@@ -64,6 +64,13 @@ export default function HomePage() {
             >
               Book a Taxi
             </Link>
+            <a
+              href="tel:+12687345386"
+              className="border-2 border-white text-white hover:bg-white hover:text-[#1B3A5C] font-bold px-8 py-4 rounded-xl text-lg transition-colors flex items-center justify-center gap-2"
+            >
+              <span className="text-xl">📞</span>
+              Call Us
+            </a>
           </div>
         </div>
       </section>
