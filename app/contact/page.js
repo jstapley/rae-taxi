@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Contact — RAE Car Rentals & Taxi Antigua',
-  description: 'Get in touch with RAE Car Rentals & Taxi in Antigua. WhatsApp, email, or use our contact form.',
+  title: 'Contact — Everyone Loves Raymond Taxi & Rentals Antigua',
+  description: "Contact Raymond's private luxury transportation service in Antigua. WhatsApp +1 (268) 734-5338 or email rae.js.peters@gmail.com.",
 };
 
 export default function ContactPage() {
@@ -36,9 +36,27 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="text-[#16A34A] hover:underline text-sm"
                     >
-                      +1 (268) 734-5386
+                      +1 (268) 734-5338
                     </a>
                     <div className="text-gray-400 text-xs mt-0.5">Fastest response — usually within minutes</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+                    <svg className="w-5 h-5 text-[#1B3A5C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-[#1B3A5C]">Email</div>
+                    <a
+                      href="mailto:rae.js.peters@gmail.com"
+                      className="text-[#1B3A5C] hover:underline text-sm"
+                    >
+                      rae.js.peters@gmail.com
+                    </a>
+                    <div className="text-gray-400 text-xs mt-0.5">We&apos;ll respond as soon as possible</div>
                   </div>
                 </div>
 
