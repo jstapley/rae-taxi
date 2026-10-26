@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 const fleetPreview = [
   { name: 'Toyota RAV4',  year: 2022, seats: 5, rate: 75, image: '/vehicles/rav4.webp' },
-  { name: 'Honda Vezel',  year: 2020, seats: 5, rate: 70, image: null },
-  { name: 'Subaru XV',    year: 2019, seats: 5, rate: 65, image: null },
+  { name: 'Honda Vezel',  year: 2020, seats: 5, rate: 70, image: '/vehicles/honda-vezel.png' },
+  { name: 'Subaru XV',    year: 2019, seats: 5, rate: 65, image: '/vehicles/subaru-xv.png' },
 ];
 
 const features = [
