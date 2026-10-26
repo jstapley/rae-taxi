@@ -6,54 +6,7 @@ import Image from 'next/image';
 import AvailabilityCalendar from '@/components/AvailabilityCalendar';
 import BookingForm from '@/components/BookingForm';
 
-const vehicleImages = {
-  RAV4: '/vehicles/rav4.webp',
-  Voxy: '/vehicles/toyota-voxy.jpg',
-  Fit:  '/vehicles/honda-fit.jpg',
-};
 
-// Static fallback data used when Supabase is not yet connected (pilot mode)
-const STATIC_VEHICLES = {
-  'rav4-placeholder': {
-    id: 'rav4-placeholder',
-    name: 'RAV4',
-    make: 'Toyota',
-    model: 'RAV4',
-    year: 2013,
-    seats: 5,
-    daily_rate: 75,
-    available: true,
-    description: 'Comfortable SUV perfect for exploring the island. Air-conditioned with ample boot space.',
-  },
-  'voxy-placeholder': {
-    id: 'voxy-placeholder',
-    name: 'Voxy',
-    make: 'Toyota',
-    model: 'Voxy',
-    year: 2025,
-    seats: 8,
-    daily_rate: 110,
-    available: true,
-    description: 'Brand new spacious minivan ideal for groups and families. Features modern amenities and plenty of luggage space.',
-  },
-  'fit-placeholder': {
-    id: 'fit-placeholder',
-    name: 'Fit',
-    make: 'Honda',
-    model: 'Fit',
-    year: 2018,
-    seats: 4,
-    daily_rate: 55,
-    available: true,
-    description: 'Economical and easy to drive. Great fuel efficiency for getting around Antigua.',
-  },
-};
-
-const STATIC_INSURANCE = [
-  { id: 'none', name: 'None', description: 'No additional insurance. Driver assumes full liability.', price_per_day: 0 },
-  { id: 'basic', name: 'Basic CDW', description: 'Collision Damage Waiver — reduces your liability in case of an accident.', price_per_day: 15 },
-  { id: 'full', name: 'Full Cover', description: 'Full protection including CDW, theft protection, and third-party liability.', price_per_day: 25 },
-];
 
 export default function VehicleDetailPage() {
   const params = useParams();
@@ -77,24 +30,10 @@ export default function VehicleDetailPage() {
           setBlockedDates(data.blockedDates || []);
           setInsuranceOptions(data.insuranceOptions || []);
         } else {
-          // Fall back to static data for pilot mode
-          const staticVehicle = STATIC_VEHICLES[id];
-          if (staticVehicle) {
-            setVehicle(staticVehicle);
-            setInsuranceOptions(STATIC_INSURANCE);
-          } else {
-            setNotFound(true);
-          }
-        }
-      } catch {
-        // Fall back to static data on network/Supabase errors
-        const staticVehicle = STATIC_VEHICLES[id];
-        if (staticVehicle) {
-          setVehicle(staticVehicle);
-          setInsuranceOptions(STATIC_INSURANCE);
-        } else {
           setNotFound(true);
         }
+      } catch {
+        setNotFound(true);
       } finally {
         setLoading(false);
       }
@@ -132,7 +71,7 @@ export default function VehicleDetailPage() {
     );
   }
 
-  const imageSrc = vehicleImages[vehicle.name] || null;
+  const imageSrc = vehicle.image_url || null;
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
