@@ -371,7 +371,7 @@ export default function AdminBlogPage() {
               {/* Article content preview */}
               <div className="border border-gray-100 rounded-xl p-5 bg-[#F8FAFC]">
                 <div
-                  className="prose max-w-none prose-headings:text-[#1B3A5C] text-sm"
+                  className="prose prose-lg max-w-none prose-headings:text-[#1B3A5C] prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800 prose-p:mb-5 prose-p:leading-relaxed prose-headings:mt-8 prose-headings:mb-3 prose-h2:font-bold prose-h2:text-xl prose-strong:text-[#1B3A5C]"
                   dangerouslySetInnerHTML={{ __html: generated.content }}
                 />
               </div>
