@@ -1,0 +1,16 @@
+{
+  "name": "Everyone Loves Raymond — Taxi & Rentals",
+  "short_name": "RAE Taxi",
+  "description": "Private luxury transportation in Antigua. Book a taxi or rental car.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1B3A5C",
+  "theme_color": "#1B3A5C",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icon", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon", "sizes": "512x512", "type": "image/png", "purpose": "maskable any" }
+  ],
+  "categories": ["travel", "transportation"],
+  "lang": "en-US"
+}

@@ -56,9 +56,9 @@ function LoginForm({ onLogin }) {
 
 function StatCard({ label, value, color }) {
   return (
-    <div className={`rounded-2xl p-6 text-white shadow-sm`} style={{ background: color }}>
-      <div className="text-4xl font-extrabold mb-1">{value ?? '—'}</div>
-      <div className="text-sm opacity-80">{label}</div>
+    <div className="rounded-2xl p-4 text-white shadow-sm" style={{ background: color }}>
+      <div className="text-2xl sm:text-4xl font-extrabold mb-1">{value ?? '—'}</div>
+      <div className="text-xs sm:text-sm opacity-80 leading-tight">{label}</div>
     </div>
   );
 }
@@ -120,17 +120,17 @@ function AdminDashboard({ onLogout }) {
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Quick Nav */}
-        <div className="flex flex-wrap gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {[
-            { href: '/admin/bookings', label: 'Manage Bookings' },
-            { href: '/admin/vehicles', label: 'Manage Vehicles' },
-            { href: '/admin/taxi', label: 'Taxi Requests' },
+            { href: '/admin/bookings', label: '📋 Bookings' },
+            { href: '/admin/vehicles', label: '🚗 Vehicles' },
+            { href: '/admin/taxi', label: '🚕 Taxi Requests' },
             { href: '/admin/blog', label: '✍️ Blog Manager' },
           ].map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="bg-[#1B3A5C] text-white px-5 py-2 rounded-xl text-sm font-semibold hover:bg-blue-900 transition-colors"
+              className="bg-[#1B3A5C] text-white px-4 py-4 rounded-xl text-sm font-semibold hover:bg-blue-900 transition-colors text-center"
             >
               {link.label}
             </a>
@@ -138,7 +138,7 @@ function AdminDashboard({ onLogout }) {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-3 gap-3 mb-8">
           <StatCard label="Total Bookings" value={stats.totalBookings} color="#1B3A5C" />
           <StatCard label="Pending Bookings" value={stats.pendingBookings} color="#F59E0B" />
           <StatCard label="Taxi Requests" value={stats.totalTaxi} color="#16A34A" />

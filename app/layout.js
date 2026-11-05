@@ -35,6 +35,13 @@ export const metadata = {
     follow: true,
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
+  manifest: '/manifest.json',
+  themeColor: '#1B3A5C',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'RAE Taxi & Rentals',
+  },
 };
 
 const localBusinessSchema = {
