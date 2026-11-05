@@ -22,12 +22,13 @@ async function getPost(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
   if (!post) return {};
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `https://www.privateluxurytransportationantigua.com/blog/${params.slug}` },
+    alternates: { canonical: `https://www.privateluxurytransportationantigua.com/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -40,7 +41,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogPostPage({ params }) {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
   if (!post) notFound();
 
   const articleSchema = {
@@ -62,7 +64,7 @@ export default async function BlogPostPage({ params }) {
       url: 'https://www.privateluxurytransportationantigua.com',
       logo: { '@type': 'ImageObject', url: 'https://www.privateluxurytransportationantigua.com/vehicles/rav4.png' },
     },
-    mainEntityOfPage: `https://www.privateluxurytransportationantigua.com/blog/${params.slug}`,
+    mainEntityOfPage: `https://www.privateluxurytransportationantigua.com/blog/${slug}`,
   };
 
   return (
