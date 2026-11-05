@@ -8,7 +8,8 @@ export default function AdminBlogPage() {
   const [authed, setAuthed] = useState(false);
   const [checked, setChecked] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [view, setView] = useState('list'); // 'list' | 'new' | 'preview'
+  const [view, setView] = useState('list'); // 'list' | 'new' | 'preview' | 'edit'
+  const [editPost, setEditPost] = useState(null); // post being edited
 
   // Form state
   const [topic, setTopic] = useState('');
@@ -151,6 +152,33 @@ export default function AdminBlogPage() {
     } catch { /* ignore */ }
   }
 
+  async function handleUpdate() {
+    if (!editPost) return;
+    setSaving(true);
+    setError('');
+    try {
+      const res = await fetch('/api/admin/blog', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: editPost.id,
+          title: editPost.title,
+          excerpt: editPost.excerpt,
+          content: editPost.content,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      await loadPosts();
+      setEditPost(null);
+      setView('list');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
   function resetForm() {
     setTopic('');
     setKeyPoints('');
@@ -172,9 +200,9 @@ export default function AdminBlogPage() {
           <a href="/admin" className="text-blue-300 hover:text-white text-sm">← Dashboard</a>
           <h1 className="text-xl font-bold">Blog Manager</h1>
         </div>
-        {view === 'list' && (
+        {(view === 'list' || view === 'edit') && (
           <button
-            onClick={() => { resetForm(); setView('new'); }}
+            onClick={() => { resetForm(); setEditPost(null); setView('new'); }}
             className="bg-[#F59E0B] hover:bg-yellow-500 text-[#1B3A5C] font-bold px-4 py-2 rounded-xl text-sm transition-colors"
           >
             + New Post
@@ -218,6 +246,12 @@ export default function AdminBlogPage() {
                         className="text-xs border border-gray-300 px-3 py-1 rounded-lg hover:border-[#F59E0B] transition-colors"
                       >
                         {post.published ? 'Unpublish' : 'Publish'}
+                      </button>
+                      <button
+                        onClick={() => { setEditPost({ ...post }); setView('edit'); }}
+                        className="text-xs text-[#1B3A5C] border border-gray-300 px-3 py-1 rounded-lg hover:border-[#1B3A5C] transition-colors"
+                      >
+                        Edit
                       </button>
                       <a
                         href={`/blog/${post.slug}`}
@@ -399,6 +433,80 @@ export default function AdminBlogPage() {
                 className="px-5 py-3 border border-gray-300 rounded-xl text-gray-600 hover:border-gray-400 transition-colors"
               >
                 Discard
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── EDIT VIEW ── */}
+        {view === 'edit' && editPost && (
+          <div>
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold text-[#1B3A5C]">Edit Post</h2>
+                <button
+                  onClick={() => { setEditPost(null); setView('list'); }}
+                  className="text-sm text-gray-500 hover:text-gray-700"
+                >
+                  ← Back to list
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Title</label>
+                  <input
+                    value={editPost.title}
+                    onChange={(e) => setEditPost({ ...editPost, title: e.target.value })}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2 font-bold text-[#1B3A5C] text-lg focus:outline-none focus:ring-2 focus:ring-[#F59E0B]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Excerpt (SEO description)</label>
+                  <textarea
+                    value={editPost.excerpt}
+                    onChange={(e) => setEditPost({ ...editPost, excerpt: e.target.value })}
+                    rows={2}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#F59E0B] resize-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Content (HTML)</label>
+                  <textarea
+                    value={editPost.content}
+                    onChange={(e) => setEditPost({ ...editPost, content: e.target.value })}
+                    rows={12}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2 text-xs text-gray-600 font-mono focus:outline-none focus:ring-2 focus:ring-[#F59E0B] resize-y"
+                  />
+                </div>
+
+                <div className="border border-gray-100 rounded-xl p-5 bg-[#F8FAFC]">
+                  <p className="text-xs text-gray-400 uppercase tracking-wide mb-3">Preview</p>
+                  <div
+                    className="prose prose-lg max-w-none prose-headings:text-[#1B3A5C] prose-a:text-blue-600 prose-a:underline hover:prose-a:text-blue-800 prose-p:mb-5 prose-p:leading-relaxed prose-headings:mt-8 prose-headings:mb-3 prose-h2:font-bold prose-h2:text-xl prose-strong:text-[#1B3A5C]"
+                    dangerouslySetInnerHTML={{ __html: editPost.content }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+            <div className="flex gap-3">
+              <button
+                onClick={handleUpdate}
+                disabled={saving}
+                className="flex-1 bg-[#1B3A5C] hover:bg-blue-900 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors"
+              >
+                {saving ? 'Saving...' : 'Save Changes'}
+              </button>
+              <button
+                onClick={() => { setEditPost(null); setView('list'); }}
+                className="px-5 py-3 border border-gray-300 rounded-xl text-gray-600 hover:border-gray-400 transition-colors"
+              >
+                Cancel
               </button>
             </div>
           </div>
