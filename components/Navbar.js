@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/vehicles', label: 'Our Fleet' },
   { href: '/taxi', label: 'Taxi Service' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 

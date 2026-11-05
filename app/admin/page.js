@@ -125,6 +125,7 @@ function AdminDashboard({ onLogout }) {
             { href: '/admin/bookings', label: 'Manage Bookings' },
             { href: '/admin/vehicles', label: 'Manage Vehicles' },
             { href: '/admin/taxi', label: 'Taxi Requests' },
+            { href: '/admin/blog', label: '✍️ Blog Manager' },
           ].map((link) => (
             <a
               key={link.href}
