@@ -45,9 +45,7 @@ export default function AdminTaxiPage() {
   async function updateStatus(id, newStatus) {
     setUpdating(true);
     try {
-      const supabase_url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-      // Direct PATCH to taxi_requests via our API
-      const res = await fetch(`/api/admin/taxi-update`, {
+      const res = await fetch('/api/admin/taxi-update', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, status: newStatus }),
@@ -68,78 +66,74 @@ export default function AdminTaxiPage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      <div className="bg-[#1B3A5C] text-white px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <a href="/admin" className="text-blue-300 hover:text-white text-sm">
-            ← Dashboard
-          </a>
-          <h1 className="text-xl font-bold">Taxi Requests</h1>
+      <div className="bg-[#1B3A5C] text-white px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {selected ? (
+            <button
+              onClick={() => setSelected(null)}
+              className="lg:hidden text-blue-300 hover:text-white text-sm"
+            >
+              ← Back
+            </button>
+          ) : (
+            <a href="/admin" className="text-blue-300 hover:text-white text-sm">← Dashboard</a>
+          )}
+          <h1 className="text-lg font-bold">
+            {selected ? selected.customer_name : 'Taxi Requests'}
+          </h1>
         </div>
         <span className="text-blue-300 text-sm">{requests.length} total</span>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Table */}
-          <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+
+          {/* Card list — hidden on mobile when detail is open */}
+          <div className={`lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden ${selected ? 'hidden lg:block' : 'block'}`}>
             {loading ? (
               <div className="p-6 text-gray-400">Loading...</div>
             ) : requests.length === 0 ? (
               <div className="p-6 text-gray-400">No taxi requests yet.</div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-                    <tr>
-                      <th className="px-4 py-3 text-left">Customer</th>
-                      <th className="px-4 py-3 text-left">Route</th>
-                      <th className="px-4 py-3 text-left">Date/Time</th>
-                      <th className="px-4 py-3 text-left">Status</th>
-                      <th className="px-4 py-3 text-right">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-50">
-                    {requests.map((r) => (
-                      <tr
-                        key={r.id}
-                        onClick={() => setSelected(r)}
-                        className={`cursor-pointer hover:bg-gray-50 ${selected?.id === r.id ? 'bg-amber-50' : ''}`}
-                      >
-                        <td className="px-4 py-3">
-                          <div className="font-medium">{r.customer_name}</div>
-                          <div className="text-xs text-gray-400">{r.customer_phone}</div>
-                        </td>
-                        <td className="px-4 py-3 text-gray-500 text-xs">
-                          <div>{r.pickup_location}</div>
-                          <div className="text-gray-400">→ {r.dropoff_location}</div>
-                        </td>
-                        <td className="px-4 py-3 text-gray-500 text-xs">
-                          {r.pickup_datetime
-                            ? new Date(r.pickup_datetime).toLocaleString()
-                            : '—'}
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className={`px-2 py-1 rounded-full text-xs font-semibold ${statusColors[r.status] || 'bg-gray-100'}`}>
-                            {r.status}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-right font-semibold">
-                          {r.price_quoted ? `$${r.price_quoted}` : '—'}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="divide-y divide-gray-50">
+                {requests.map((r) => (
+                  <button
+                    key={r.id}
+                    onClick={() => setSelected(r)}
+                    className={`w-full text-left px-4 py-4 hover:bg-gray-50 transition-colors ${selected?.id === r.id ? 'bg-amber-50' : ''}`}
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <div>
+                        <div className="font-semibold text-[#1B3A5C]">{r.customer_name}</div>
+                        <div className="text-xs text-gray-400">{r.customer_phone}</div>
+                      </div>
+                      <span className={`px-2 py-1 rounded-full text-xs font-semibold shrink-0 ${statusColors[r.status] || 'bg-gray-100'}`}>
+                        {r.status}
+                      </span>
+                    </div>
+                    <div className="text-sm text-gray-600 mb-1">
+                      <span className="font-medium">{r.pickup_location}</span>
+                      <span className="text-gray-400 mx-1">→</span>
+                      <span>{r.dropoff_location}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-gray-400">
+                      <span>{r.pickup_datetime ? new Date(r.pickup_datetime).toLocaleString() : '—'}</span>
+                      {r.price_quoted && (
+                        <span className="font-semibold text-[#1B3A5C]">${r.price_quoted}</span>
+                      )}
+                    </div>
+                  </button>
+                ))}
               </div>
             )}
           </div>
 
-          {/* Detail panel */}
-          <div>
+          {/* Detail panel — full-screen on mobile when open */}
+          <div className={selected ? 'block' : 'hidden lg:block'}>
             {selected ? (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                 <h3 className="font-bold text-[#1B3A5C] mb-4">Request Detail</h3>
-                <div className="space-y-2 text-sm mb-4">
+                <div className="space-y-3 text-sm mb-4">
                   {[
                     ['Customer', selected.customer_name],
                     ['Phone', selected.customer_phone],
@@ -147,25 +141,25 @@ export default function AdminTaxiPage() {
                     ['Drop-off', selected.dropoff_location],
                     ['Date/Time', selected.pickup_datetime ? new Date(selected.pickup_datetime).toLocaleString() : '—'],
                     ['Passengers', selected.passengers],
-                    ['Quoted', selected.price_quoted ? `$${selected.price_quoted}` : '—'],
+                    ['Quoted', selected.price_quoted ? `$${selected.price_quoted}` : 'Not quoted'],
                     ['Notes', selected.notes || '—'],
                   ].map(([label, val]) => (
-                    <div key={label} className="flex justify-between gap-2">
-                      <span className="text-gray-400">{label}</span>
-                      <span className="font-medium text-right text-sm break-words max-w-32">{val}</span>
+                    <div key={label} className="flex justify-between gap-2 border-b border-gray-50 pb-2 last:border-0 last:pb-0">
+                      <span className="text-gray-400 shrink-0">{label}</span>
+                      <span className="font-medium text-right text-sm">{val}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="pt-4 border-t border-gray-100">
                   <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide">Update Status</div>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2 mb-3">
                     {['pending', 'confirmed', 'cancelled', 'completed'].map((s) => (
                       <button
                         key={s}
                         onClick={() => updateStatus(selected.id, s)}
                         disabled={updating || selected.status === s}
-                        className={`py-2 rounded-xl text-xs font-semibold capitalize transition-colors ${
+                        className={`py-3 rounded-xl text-sm font-semibold capitalize transition-colors ${
                           selected.status === s
                             ? 'bg-gray-100 text-gray-400 cursor-default'
                             : 'bg-[#1B3A5C] text-white hover:bg-blue-900'
@@ -175,13 +169,11 @@ export default function AdminTaxiPage() {
                       </button>
                     ))}
                   </div>
-
-                  {/* WhatsApp quick contact */}
                   <a
                     href={`https://wa.me/${selected.customer_phone.replace(/\D/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 w-full flex items-center justify-center gap-2 bg-[#16A34A] hover:bg-green-700 text-white text-xs font-semibold py-2 rounded-xl transition-colors"
+                    className="w-full flex items-center justify-center gap-2 bg-[#16A34A] hover:bg-green-700 text-white text-sm font-semibold py-3 rounded-xl transition-colors"
                   >
                     WhatsApp Customer
                   </a>
@@ -189,10 +181,11 @@ export default function AdminTaxiPage() {
               </div>
             ) : (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center text-gray-400 text-sm">
-                Click a request row to view details.
+                Tap a request to view details.
               </div>
             )}
           </div>
+
         </div>
       </div>
     </div>

@@ -229,27 +229,31 @@ export default function AdminBlogPage() {
             ) : (
               <div className="space-y-3">
                 {posts.map((post) => (
-                  <div key={post.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex items-center justify-between gap-4">
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-[#1B3A5C] truncate">{post.title}</div>
-                      <div className="text-xs text-gray-400 mt-1">
-                        {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-                        {post.topic && <> · {post.topic}</>}
+                  <div key={post.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+                    {/* Title row */}
+                    <div className="flex items-start justify-between gap-2 mb-3">
+                      <div className="min-w-0">
+                        <div className="font-semibold text-[#1B3A5C] leading-snug">{post.title}</div>
+                        <div className="text-xs text-gray-400 mt-1">
+                          {new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                          {post.topic && <> · {post.topic}</>}
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className={`text-xs px-2 py-1 rounded-full font-semibold ${post.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                      <span className={`text-xs px-2 py-1 rounded-full font-semibold shrink-0 ${post.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
                         {post.published ? 'Published' : 'Draft'}
                       </span>
+                    </div>
+                    {/* Action buttons row */}
+                    <div className="flex items-center gap-2 flex-wrap">
                       <button
                         onClick={() => togglePublish(post)}
-                        className="text-xs border border-gray-300 px-3 py-1 rounded-lg hover:border-[#F59E0B] transition-colors"
+                        className="text-xs border border-gray-300 px-3 py-2 rounded-lg hover:border-[#F59E0B] transition-colors"
                       >
                         {post.published ? 'Unpublish' : 'Publish'}
                       </button>
                       <button
                         onClick={() => { setEditPost({ ...post }); setView('edit'); }}
-                        className="text-xs text-[#1B3A5C] border border-gray-300 px-3 py-1 rounded-lg hover:border-[#1B3A5C] transition-colors"
+                        className="text-xs text-[#1B3A5C] border border-gray-300 px-3 py-2 rounded-lg hover:border-[#1B3A5C] transition-colors"
                       >
                         Edit
                       </button>
@@ -257,13 +261,13 @@ export default function AdminBlogPage() {
                         href={`/blog/${post.slug}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-[#1B3A5C] border border-gray-300 px-3 py-1 rounded-lg hover:border-[#1B3A5C] transition-colors"
+                        className="text-xs text-[#1B3A5C] border border-gray-300 px-3 py-2 rounded-lg hover:border-[#1B3A5C] transition-colors"
                       >
                         View
                       </a>
                       <button
                         onClick={() => deletePost(post.id)}
-                        className="text-xs text-red-500 border border-red-200 px-3 py-1 rounded-lg hover:bg-red-50 transition-colors"
+                        className="text-xs text-red-500 border border-red-200 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors ml-auto"
                       >
                         Delete
                       </button>

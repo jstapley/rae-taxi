@@ -77,24 +77,33 @@ export default function AdminBookingsPage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      <div className="bg-[#1B3A5C] text-white px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <a href="/admin" className="text-blue-300 hover:text-white text-sm">
-            ← Dashboard
-          </a>
-          <h1 className="text-xl font-bold">Bookings</h1>
+      <div className="bg-[#1B3A5C] text-white px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {selected ? (
+            <button
+              onClick={() => setSelected(null)}
+              className="lg:hidden text-blue-300 hover:text-white text-sm"
+            >
+              ← Back
+            </button>
+          ) : (
+            <a href="/admin" className="text-blue-300 hover:text-white text-sm">← Dashboard</a>
+          )}
+          <h1 className="text-lg font-bold">
+            {selected ? selected.customer_name : 'Bookings'}
+          </h1>
         </div>
         <span className="text-blue-300 text-sm">{bookings.length} total</span>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Status filter */}
-        <div className="flex flex-wrap gap-2 mb-6">
+      <div className="max-w-6xl mx-auto px-4 py-6">
+        {/* Status filter — hidden when detail is open on mobile */}
+        <div className={`flex gap-2 mb-5 overflow-x-auto pb-1 ${selected ? 'hidden lg:flex' : 'flex'}`}>
           {STATUSES.map((s) => (
             <button
               key={s}
               onClick={() => setStatusFilter(s)}
-              className={`px-4 py-2 rounded-xl text-sm font-semibold capitalize transition-colors ${
+              className={`px-4 py-2 rounded-xl text-sm font-semibold capitalize transition-colors whitespace-nowrap ${
                 statusFilter === s
                   ? 'bg-[#1B3A5C] text-white'
                   : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
@@ -106,60 +115,48 @@ export default function AdminBookingsPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* List */}
-          <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+
+          {/* Card list — hidden on mobile when detail is open */}
+          <div className={`lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden ${selected ? 'hidden lg:block' : 'block'}`}>
             {loading ? (
               <div className="p-6 text-gray-400">Loading...</div>
             ) : bookings.length === 0 ? (
               <div className="p-6 text-gray-400">No bookings found.</div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-                    <tr>
-                      <th className="px-4 py-3 text-left">Customer</th>
-                      <th className="px-4 py-3 text-left">Vehicle</th>
-                      <th className="px-4 py-3 text-left">Dates</th>
-                      <th className="px-4 py-3 text-left">Status</th>
-                      <th className="px-4 py-3 text-right">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-50">
-                    {bookings.map((b) => (
-                      <tr
-                        key={b.id}
-                        onClick={() => setSelected(b)}
-                        className={`cursor-pointer hover:bg-gray-50 ${selected?.id === b.id ? 'bg-amber-50' : ''}`}
-                      >
-                        <td className="px-4 py-3 font-medium">{b.customer_name}</td>
-                        <td className="px-4 py-3 text-gray-500">
-                          {b.vehicles ? `${b.vehicles.year} ${b.vehicles.make} ${b.vehicles.model}` : '—'}
-                        </td>
-                        <td className="px-4 py-3 text-gray-500 text-xs">
-                          {b.pickup_date}<br />{b.dropoff_date}
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className={`px-2 py-1 rounded-full text-xs font-semibold ${statusColors[b.status] || 'bg-gray-100'}`}>
-                            {b.status}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-right font-semibold">
-                          {b.total_amount ? `$${b.total_amount}` : '—'}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="divide-y divide-gray-50">
+                {bookings.map((b) => (
+                  <button
+                    key={b.id}
+                    onClick={() => setSelected(b)}
+                    className={`w-full text-left px-4 py-4 hover:bg-gray-50 transition-colors ${selected?.id === b.id ? 'bg-amber-50' : ''}`}
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <div className="font-semibold text-[#1B3A5C]">{b.customer_name}</div>
+                      <span className={`px-2 py-1 rounded-full text-xs font-semibold shrink-0 ${statusColors[b.status] || 'bg-gray-100'}`}>
+                        {b.status}
+                      </span>
+                    </div>
+                    <div className="text-sm text-gray-500 mb-1">
+                      {b.vehicles ? `${b.vehicles.year} ${b.vehicles.make} ${b.vehicles.model}` : '—'}
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-gray-400">
+                      <span>{b.pickup_date} → {b.dropoff_date}</span>
+                      {b.total_amount && (
+                        <span className="font-semibold text-[#1B3A5C]">${b.total_amount}</span>
+                      )}
+                    </div>
+                  </button>
+                ))}
               </div>
             )}
           </div>
 
-          {/* Detail panel */}
-          <div>
+          {/* Detail panel — full-screen on mobile when open */}
+          <div className={selected ? 'block' : 'hidden lg:block'}>
             {selected ? (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                 <h3 className="font-bold text-[#1B3A5C] mb-4">Booking Detail</h3>
-                <div className="space-y-2 text-sm mb-4">
+                <div className="space-y-3 text-sm mb-4">
                   {[
                     ['Customer', selected.customer_name],
                     ['Phone', selected.customer_phone],
@@ -171,8 +168,8 @@ export default function AdminBookingsPage() {
                     ['Total', selected.total_amount ? `$${selected.total_amount} USD` : '—'],
                     ['Notes', selected.notes || '—'],
                   ].map(([label, val]) => (
-                    <div key={label} className="flex justify-between gap-2">
-                      <span className="text-gray-400">{label}</span>
+                    <div key={label} className="flex justify-between gap-2 border-b border-gray-50 pb-2 last:border-0 last:pb-0">
+                      <span className="text-gray-400 shrink-0">{label}</span>
                       <span className="font-medium text-right">{val}</span>
                     </div>
                   ))}
@@ -186,7 +183,7 @@ export default function AdminBookingsPage() {
                         key={s}
                         onClick={() => updateStatus(selected.id, s)}
                         disabled={updating || selected.status === s}
-                        className={`py-2 rounded-xl text-xs font-semibold capitalize transition-colors ${
+                        className={`py-3 rounded-xl text-sm font-semibold capitalize transition-colors ${
                           selected.status === s
                             ? 'bg-gray-100 text-gray-400 cursor-default'
                             : 'bg-[#1B3A5C] text-white hover:bg-blue-900'
@@ -200,10 +197,11 @@ export default function AdminBookingsPage() {
               </div>
             ) : (
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center text-gray-400 text-sm">
-                Click a booking row to view details.
+                Tap a booking to view details.
               </div>
             )}
           </div>
+
         </div>
       </div>
     </div>
