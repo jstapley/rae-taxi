@@ -36,14 +36,14 @@ export default function HomePage() {
             >
               <div className="text-5xl mb-4">🚕</div>
               <h2 className="text-xl font-extrabold mb-2 group-hover:text-[#1B3A5C]">
-                Private Taxi Service
+                Taxi Service
               </h2>
               <p className="text-blue-200 group-hover:text-[#1B3A5C]/80 text-sm leading-relaxed mb-4">
                 Airport pickups, hotel transfers &amp; island tours with Raymond.
                 Quote via WhatsApp — usually within minutes.
               </p>
               <span className="inline-block bg-[#F59E0B] group-hover:bg-[#1B3A5C] group-hover:text-white text-[#1B3A5C] font-bold px-5 py-2 rounded-xl text-sm transition-colors">
-                Request a Quote →
+                I need a taxi!
               </span>
             </Link>
 
@@ -54,14 +54,14 @@ export default function HomePage() {
             >
               <div className="text-5xl mb-4">🚗</div>
               <h2 className="text-xl font-extrabold mb-2">
-                Peridot Car Rentals
+                Car Rentals
               </h2>
               <p className="text-blue-200 group-hover:text-white/90 text-sm leading-relaxed mb-4">
                 Self-drive SUVs from $70/day. Toyota RAV4, Honda Vezel &amp; Subaru XV.
                 Discounted rates for 2+ days.
               </p>
               <span className="inline-block bg-emerald-500 group-hover:bg-white group-hover:text-emerald-700 text-white font-bold px-5 py-2 rounded-xl text-sm transition-colors">
-                Browse Fleet →
+                I need a car!
               </span>
             </Link>
           </div>

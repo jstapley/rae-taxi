@@ -63,17 +63,35 @@ export default function TaxiPage() {
       {/* Hero */}
       <div
         className="text-white py-16 px-4 text-center"
-        style={{ background: 'linear-gradient(135deg, #1B3A5C 0%, #2d5986 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #1B3A5C 0%, #2d5986 50%, #1B3A5C 100%)' }}
       >
         <div className="max-w-3xl mx-auto">
-          <div className="text-5xl mb-4">🚕</div>
+          <div className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-5">
+            Antigua · Taxi Service
+          </div>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Raymond&apos;s Private Taxi Service
+            Everyone Loves Raymond
           </h1>
-          <p className="text-blue-200 text-lg">
-            Luxury private transportation across Antigua. Airport pickups, hotel transfers,
+          <p className="text-blue-200 text-lg mb-8 max-w-2xl mx-auto">
+            Private luxury transportation across Antigua. Airport pickups, hotel transfers,
             island tours — prompt, professional, always with a smile.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="tel:+12687345338"
+              className="bg-white text-[#1B3A5C] hover:bg-blue-50 font-bold px-8 py-4 rounded-xl text-lg transition-colors shadow-lg"
+            >
+              📞 Call +1 (268) 734-5338
+            </a>
+            <a
+              href="https://wa.me/12687345338"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-white text-white hover:bg-white hover:text-[#1B3A5C] font-bold px-8 py-4 rounded-xl text-lg transition-colors"
+            >
+              WhatsApp Us
+            </a>
+          </div>
         </div>
       </div>
 
