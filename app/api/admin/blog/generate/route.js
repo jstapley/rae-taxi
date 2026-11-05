@@ -18,21 +18,30 @@ ${keyPoints ? `Key points to cover:\n${keyPoints}` : ''}
 
 Requirements:
 - Write in a warm, personal, first-person style (as Raymond, a local Antiguan who knows the island intimately)
-- Naturally reference the AntiguaSearch.com website when mentioning Antiguan locations, parishes, or attractions (e.g. "you can learn more about Shirley Heights on AntiguaSearch.com")
 - Target keywords: private transportation Antigua, luxury taxi Antigua, ${topic}
 - Length: 500-700 words
 - Include a compelling title (H1)
 - Use 2-3 subheadings (H2)
-- End with a subtle call to action to book Raymond's taxi or rental service
+- Every paragraph must be wrapped in <p> tags with meaningful content
+- Include AT LEAST 3 hyperlinks naturally within the article body using proper <a> tags:
+  1. At least 1 internal link to this site — use these exact URLs:
+     - Book a taxi: <a href="/taxi">book a private taxi</a>
+     - Rent a car: <a href="/vehicles">rent a vehicle</a>
+     - Contact: <a href="/contact">get in touch</a>
+  2. At least 2 external links to AntiguaSearch.com for relevant Antiguan locations/attractions, e.g.:
+     - <a href="https://antiguasearch.com" target="_blank" rel="noopener noreferrer">AntiguaSearch.com</a>
+     - Link to specific parish or attraction pages like: https://antiguasearch.com (use the homepage since specific pages may vary)
+  3. Optionally link to relevant external authority sites (tourism boards, Wikipedia for landmarks, etc.)
+- All <a> tags must have descriptive anchor text (never "click here")
 - Format the response as JSON with these fields:
   {
     "title": "...",
-    "slug": "...(url-friendly, lowercase, hyphens)",
+    "slug": "...(url-friendly, lowercase, hyphens only)",
     "excerpt": "...(2 sentence summary for SEO meta description, under 160 chars)",
-    "content": "...(full HTML content using <h1>, <h2>, <p>, <strong> tags)"
+    "content": "...(full HTML using <h1>, <h2>, <p>, <strong>, <a> tags — no extra whitespace or newlines inside the JSON string)"
   }
 
-Only return valid JSON, no markdown code blocks.`;
+Only return valid JSON. No markdown code blocks. No trailing commas.`;
 
     const message = await client.messages.create({
       model: 'claude-opus-4-6',

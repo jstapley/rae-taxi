@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }) {
 
         {/* Content */}
         <article
-          className="prose prose-lg max-w-none prose-headings:text-[#1B3A5C] prose-a:text-[#F59E0B] prose-a:no-underline hover:prose-a:underline"
+          className="prose prose-lg max-w-none prose-headings:text-[#1B3A5C] prose-a:text-[#F59E0B] prose-a:no-underline hover:prose-a:underline prose-p:mb-5 prose-p:leading-relaxed prose-headings:mt-8 prose-headings:mb-3"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
