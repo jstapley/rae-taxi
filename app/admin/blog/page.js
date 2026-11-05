@@ -258,7 +258,7 @@ export default function AdminBlogPage() {
                         Edit
                       </button>
                       <a
-                        href={`/blog/${post.slug}`}
+                        href={`https://www.privateluxurytransportationantigua.com/blog/${post.slug}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-[#1B3A5C] border border-gray-300 px-3 py-2 rounded-lg hover:border-[#1B3A5C] transition-colors"

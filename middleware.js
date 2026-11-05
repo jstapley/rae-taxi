@@ -24,6 +24,16 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
+  // Public routes — never rewrite, let them render normally
+  if (
+    pathname.startsWith('/blog') ||
+    pathname.startsWith('/vehicles') ||
+    pathname.startsWith('/taxi') ||
+    pathname.startsWith('/contact')
+  ) {
+    return NextResponse.next();
+  }
+
   // Rewrite the root and any sub-paths to their /admin equivalent
   const url = request.nextUrl.clone();
   url.pathname = pathname === '/' ? '/admin' : `/admin${pathname}`;
