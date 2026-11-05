@@ -1,6 +1,12 @@
 import VehicleCard from '@/components/VehicleCard';
 import { createServerClient } from '@/lib/supabase';
 
+export const metadata = {
+  title: 'Car Rentals Antigua — Toyota RAV4, Honda Vezel & Subaru XV',
+  description: 'Rent a car in Antigua from $70/day. Well-maintained SUVs with AC, available island-wide. Discounted rates for 2+ days. Book online or via WhatsApp.',
+  alternates: { canonical: 'https://www.privateluxurytransportationantigua.com/vehicles' },
+};
+
 async function getVehicles() {
   try {
     const supabase = createServerClient();
@@ -17,11 +23,6 @@ async function getVehicles() {
 }
 
 export const dynamic = 'force-dynamic';
-
-export const metadata = {
-  title: 'Our Fleet — Private Luxury Car Rentals Antigua',
-  description: "Browse Raymond's fleet of private rental vehicles in Antigua. Toyota RAV4, Honda Vezel, Subaru XV — all air-conditioned. Book online today.",
-};
 
 export default async function VehiclesPage() {
   const vehicles = await getVehicles();

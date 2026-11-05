@@ -5,8 +5,9 @@ import { createServerClient } from '@/lib/supabase';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: "Raymond's Blog — Private Luxury Transportation Antigua",
-  description: "Local tips, island guides, and travel insights from Raymond — Antigua's private luxury transportation expert.",
+  title: 'Antigua Travel Blog — Local Tips & Island Guides',
+  description: "Discover Antigua through Raymond's eyes. Travel tips, insider guides to beaches, restaurants, Shirley Heights, Nelson's Dockyard & more.",
+  alternates: { canonical: 'https://www.privateluxurytransportationantigua.com/blog' },
 };
 
 async function getPosts() {

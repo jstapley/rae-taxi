@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const metadata = {
+  title: 'Everyone Loves Raymond — Private Luxury Transportation Antigua',
+  description: "Airport transfers, private taxi & car rentals across Antigua starting from $70/day. Book Raymond's trusted luxury transportation — available 7 days a week.",
+  alternates: { canonical: 'https://www.privateluxurytransportationantigua.com' },
+};
+
 const fleetPreview = [
   { name: 'Toyota RAV4',  year: 2013, seats: 5, rate: 75, image: '/vehicles/rav4.png' },
   { name: 'Honda Vezel',  year: 2015, seats: 5, rate: 75, image: '/vehicles/honda-vezel.png' },

@@ -25,8 +25,17 @@ export async function generateMetadata({ params }) {
   const post = await getPost(params.slug);
   if (!post) return {};
   return {
-    title: `${post.title} — Everyone Loves Raymond Antigua`,
+    title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `https://www.privateluxurytransportationantigua.com/blog/${params.slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.created_at,
+      authors: ['Raymond Peters'],
+      images: post.image_url ? [{ url: post.image_url }] : [],
+    },
   };
 }
 
@@ -34,8 +43,34 @@ export default async function BlogPostPage({ params }) {
   const post = await getPost(params.slug);
   if (!post) notFound();
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.image_url || undefined,
+    datePublished: post.created_at,
+    dateModified: post.updated_at || post.created_at,
+    author: {
+      '@type': 'Person',
+      name: 'Raymond Peters',
+      url: 'https://www.privateluxurytransportationantigua.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Everyone Loves Raymond — Taxi & Rentals',
+      url: 'https://www.privateluxurytransportationantigua.com',
+      logo: { '@type': 'ImageObject', url: 'https://www.privateluxurytransportationantigua.com/vehicles/rav4.png' },
+    },
+    mainEntityOfPage: `https://www.privateluxurytransportationantigua.com/blog/${params.slug}`,
+  };
+
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {/* Hero image */}
       {post.image_url && (
         <div className="relative h-72 md:h-96 w-full bg-gray-200">

@@ -5,27 +5,81 @@ import Navbar from '@/components/Navbar';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "Everyone Loves Raymond — Private Luxury Transportation Antigua",
+  title: {
+    default: "Everyone Loves Raymond — Private Luxury Transportation Antigua",
+    template: "%s | Everyone Loves Raymond Antigua",
+  },
   description:
-    "Raymond's private luxury transportation service in Antigua. Airport transfers, private shuttle, car rentals & island tours. Prompt service with a smile.",
+    "Raymond's private luxury transportation service in Antigua. Airport transfers, private taxi, car rentals & island tours. Available 7 days a week.",
   keywords:
-    'private luxury transportation Antigua, private shuttle Antigua, airport transfer Antigua, car rental Antigua, taxi Antigua, Raymond Antigua',
+    'private luxury transportation Antigua, private taxi Antigua, airport transfer Antigua, car rental Antigua, taxi Antigua, Raymond Antigua, island tours Antigua',
   metadataBase: new URL('https://www.privateluxurytransportationantigua.com'),
+  alternates: { canonical: '/' },
   openGraph: {
     title: "Everyone Loves Raymond — Private Luxury Transportation Antigua",
     description:
-      "Raymond's private luxury transportation service in Antigua. Airport transfers, private shuttle, car rentals & island tours.",
+      "Raymond's private luxury transportation service in Antigua. Airport transfers, private taxi, car rentals & island tours.",
     url: 'https://www.privateluxurytransportationantigua.com',
     siteName: "Everyone Loves Raymond — Taxi & Rentals",
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/vehicles/rav4.png', width: 1200, height: 630, alt: 'Everyone Loves Raymond — Taxi & Rentals Antigua' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Everyone Loves Raymond — Private Luxury Transportation Antigua",
+    description: "Airport transfers, private taxi & car rentals in Antigua. Available 7 days a week.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'TaxiService'],
+  name: 'Everyone Loves Raymond — Taxi & Rentals',
+  alternateName: 'RAE Taxi & Rentals Antigua',
+  description: "Raymond's private luxury transportation service in Antigua. Airport transfers, private taxi, car rentals & island tours.",
+  url: 'https://www.privateluxurytransportationantigua.com',
+  telephone: '+12687345338',
+  email: 'rae.js.peters@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: "St. John's",
+    addressRegion: 'Antigua',
+    addressCountry: 'AG',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 17.1274,
+    longitude: -61.8468,
+  },
+  priceRange: '$$',
+  currenciesAccepted: 'USD, XCD',
+  paymentAccepted: 'Cash, Credit Card',
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  areaServed: { '@type': 'AdministrativeArea', name: 'Antigua and Barbuda' },
+  serviceType: ['Airport Transfer', 'Private Taxi', 'Car Rental', 'Island Tour', 'Private Shuttle'],
+  image: 'https://www.privateluxurytransportationantigua.com/vehicles/rav4.png',
+  hasMap: 'https://maps.google.com/?q=St+John%27s+Antigua',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
       <body className={`${inter.className} min-h-full flex flex-col bg-[#F8FAFC]`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <footer className="bg-[#1B3A5C] text-white py-10 mt-auto">
