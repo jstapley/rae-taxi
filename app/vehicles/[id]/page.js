@@ -64,7 +64,7 @@ export default function VehicleDetailPage() {
         <div className="text-6xl mb-4">🚫</div>
         <h2 className="text-2xl font-bold text-[#1B3A5C] mb-2">Vehicle Not Found</h2>
         <p className="text-gray-500 mb-6">This vehicle may not exist or is no longer available.</p>
-        <a href="/vehicles" className="bg-[#1B3A5C] text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-900 transition-colors">
+        <a href="/car-rental" className="bg-[#1B3A5C] text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-900 transition-colors">
           View All Vehicles
         </a>
       </div>
@@ -78,7 +78,7 @@ export default function VehicleDetailPage() {
       {/* Breadcrumb */}
       <div className="bg-[#1B3A5C] text-white py-4 px-4">
         <div className="max-w-6xl mx-auto text-sm flex items-center gap-2 text-blue-300">
-          <a href="/vehicles" className="hover:text-white transition-colors">Our Fleet</a>
+          <a href="/car-rental" className="hover:text-white transition-colors">Car Rentals</a>
           <span>/</span>
           <span className="text-white">{vehicle.year} {vehicle.make} {vehicle.model}</span>
         </div>

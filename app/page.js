@@ -1,98 +1,103 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 export const metadata = {
-  title: 'Everyone Loves Raymond — Private Luxury Transportation Antigua',
-  description: "Airport transfers, private taxi & car rentals across Antigua starting from $70/day. Book Raymond's trusted luxury transportation — available 7 days a week.",
+  title: 'Everyone Loves Raymond — Private Taxi & Peridot Car Rentals Antigua',
+  description: "Antigua's trusted transportation services. Book Raymond's private taxi or rent a car with Peridot Car Rentals. Airport transfers, island tours & SUV rentals island-wide.",
   alternates: { canonical: 'https://www.privateluxurytransportationantigua.com' },
 };
-
-const fleetPreview = [
-  { name: 'Toyota RAV4',  year: 2013, seats: 5, rate: 75, image: '/vehicles/rav4.png' },
-  { name: 'Honda Vezel',  year: 2015, seats: 5, rate: 75, image: '/vehicles/honda-vezel.png' },
-  { name: 'Subaru XV',    year: 2014, seats: 5, rate: 70, image: '/vehicles/subaru-xv.jpg' },
-];
-
-const features = [
-  {
-    icon: '🚘',
-    title: 'Reliable Fleet',
-    desc: 'Well-maintained vehicles with AC, ready for island adventures. Choose from economy to spacious minivan.',
-  },
-  {
-    icon: '🗺️',
-    title: 'Island-Wide Taxi',
-    desc: 'Fixed-price transfers from the airport and flexible taxi service to any destination across Antigua.',
-  },
-  {
-    icon: '📱',
-    title: 'Easy Booking',
-    desc: 'Book online in minutes or reach us instantly on WhatsApp. No hidden fees, transparent pricing.',
-  },
-];
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
+      {/* Hero — split service selector */}
       <section
-        className="relative min-h-[560px] flex items-center justify-center text-white overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #1B3A5C 0%, #2d5986 50%, #1B3A5C 100%)',
-        }}
+        className="relative py-20 px-4 text-white text-center"
+        style={{ background: 'linear-gradient(135deg, #1B3A5C 0%, #2d5986 60%, #1B3A5C 100%)' }}
       >
-        {/* Decorative circles */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#F59E0B] opacity-10 rounded-full -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full translate-y-1/2 -translate-x-1/2" />
-
-        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto py-20">
+        <div className="relative z-10 max-w-3xl mx-auto">
           <div className="inline-block bg-[#F59E0B] text-[#1B3A5C] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
-            Raymond&apos;s · Antigua
+            Antigua · Transportation Services
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-            Antigua&apos;s Private{' '}
-            <span className="text-[#F59E0B]">Luxury Transportation</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+            What can we help<br />you with today?
           </h1>
-          <p className="text-blue-200 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Raymond&apos;s delivers prompt, professional shuttle service and car rentals across Antigua.
-            Airport transfers, island tours, private transportation — always with a smile.
+          <p className="text-blue-200 text-lg mb-12">
+            Choose the service that fits your needs — private taxi or car rental, we&apos;ve got you covered.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/vehicles"
-              className="bg-[#16A34A] hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors shadow-lg"
-            >
-              Book a Rental
-            </Link>
+
+          {/* Service cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+            {/* Taxi card */}
             <Link
               href="/taxi"
-              className="border-2 border-[#F59E0B] text-[#F59E0B] hover:bg-[#F59E0B] hover:text-[#1B3A5C] font-bold px-8 py-4 rounded-xl text-lg transition-colors"
+              className="group bg-white/10 hover:bg-[#F59E0B] border-2 border-white/30 hover:border-[#F59E0B] rounded-2xl p-7 text-left transition-all duration-200 hover:text-[#1B3A5C] hover:scale-[1.02]"
             >
-              Book a Taxi
+              <div className="text-5xl mb-4">🚕</div>
+              <h2 className="text-xl font-extrabold mb-2 group-hover:text-[#1B3A5C]">
+                Private Taxi Service
+              </h2>
+              <p className="text-blue-200 group-hover:text-[#1B3A5C]/80 text-sm leading-relaxed mb-4">
+                Airport pickups, hotel transfers &amp; island tours with Raymond.
+                Quote via WhatsApp — usually within minutes.
+              </p>
+              <span className="inline-block bg-[#F59E0B] group-hover:bg-[#1B3A5C] group-hover:text-white text-[#1B3A5C] font-bold px-5 py-2 rounded-xl text-sm transition-colors">
+                Request a Quote →
+              </span>
             </Link>
-            <a
-              href="tel:+12687345338"
-              className="border-2 border-white text-white hover:bg-white hover:text-[#1B3A5C] font-bold px-8 py-4 rounded-xl text-lg transition-colors flex items-center justify-center gap-2"
+
+            {/* Car rental card */}
+            <Link
+              href="/car-rental"
+              className="group bg-white/10 hover:bg-emerald-500 border-2 border-white/30 hover:border-emerald-500 rounded-2xl p-7 text-left transition-all duration-200 hover:text-white hover:scale-[1.02]"
             >
-              <span className="text-xl">📞</span>
-              Call Us
-            </a>
+              <div className="text-5xl mb-4">🚗</div>
+              <h2 className="text-xl font-extrabold mb-2">
+                Peridot Car Rentals
+              </h2>
+              <p className="text-blue-200 group-hover:text-white/90 text-sm leading-relaxed mb-4">
+                Self-drive SUVs from $70/day. Toyota RAV4, Honda Vezel &amp; Subaru XV.
+                Discounted rates for 2+ days.
+              </p>
+              <span className="inline-block bg-emerald-500 group-hover:bg-white group-hover:text-emerald-700 text-white font-bold px-5 py-2 rounded-xl text-sm transition-colors">
+                Browse Fleet →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick contact strip */}
+      <section className="bg-white py-6 px-4 border-b border-gray-100">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-600">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-[#1B3A5C]">Taxi:</span>
+            <a href="tel:+12687345338" className="hover:text-[#1B3A5C] font-medium">+1 (268) 734-5338</a>
+            <span className="text-gray-300">|</span>
+            <a href="https://wa.me/12687345338" target="_blank" rel="noopener noreferrer" className="text-[#16A34A] font-medium hover:underline">WhatsApp</a>
+          </div>
+          <div className="hidden sm:block w-px h-5 bg-gray-200" />
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-emerald-700">Car Rentals:</span>
+            <a href="tel:+12687869093" className="hover:text-emerald-700 font-medium">+1 (268) 786-9093</a>
+            <span className="text-gray-300">|</span>
+            <a href="mailto:peridotcarrentals@gmail.com" className="text-emerald-700 font-medium hover:underline">Email Us</a>
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-16 px-4 bg-[#F8FAFC]">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-center text-3xl font-bold text-[#1B3A5C] mb-10">
-            Why Choose RAE?
-          </h2>
+          <h2 className="text-center text-3xl font-bold text-[#1B3A5C] mb-10">Why Choose Us?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="bg-[#F8FAFC] rounded-2xl p-8 text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
-              >
+            {[
+              { icon: '🌴', title: 'Local Expertise', desc: 'Born and raised in Antigua. We know every road, resort, and hidden gem on the island.' },
+              { icon: '⚡', title: 'Fast Response', desc: 'Taxi quotes via WhatsApp usually within minutes. Car rental bookings confirmed same day.' },
+              { icon: '✅', title: 'No Hidden Fees', desc: 'Transparent pricing on everything. What you see is what you pay — always.' },
+            ].map((f) => (
+              <div key={f.title} className="bg-white rounded-2xl p-8 text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-5xl mb-4">{f.icon}</div>
                 <h3 className="text-xl font-bold text-[#1B3A5C] mb-2">{f.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{f.desc}</p>
@@ -102,111 +107,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Fleet Preview */}
-      <section className="py-16 px-4 bg-[#F8FAFC]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-bold text-[#1B3A5C]">Our Fleet</h2>
-            <Link
-              href="/vehicles"
-              className="text-[#F59E0B] font-semibold hover:underline text-sm"
-            >
-              View All &rarr;
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {fleetPreview.map((v) => (
-              <div
-                key={v.name}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
-              >
-                <div className="relative h-48 bg-gray-100">
-                  {v.image ? (
-                    <Image
-                      src={v.image}
-                      alt={v.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-                      <span className="text-6xl">🚗</span>
-                    </div>
-                  )}
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-bold text-[#1B3A5C]">{v.name}</h3>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-semibold">
-                      Available
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
-                    <span>{v.year}</span>
-                    <span>&bull;</span>
-                    <span>{v.seats} seats</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-2xl font-extrabold text-[#1B3A5C]">
-                        ${v.rate}
-                        <span className="text-sm font-normal text-gray-400">/day</span>
-                      </span>
-                      <div className="text-xs text-gray-400 mt-0.5">2+ days · 1 day ${v.rate + 5}</div>
-                    </div>
-                    <Link
-                      href="/vehicles"
-                      className="bg-[#1B3A5C] hover:bg-blue-900 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
-                    >
-                      View &amp; Book
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Taxi CTA */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-[#1B3A5C] mb-3">
-            Private Taxi Service Across Antigua
-          </h2>
-          <p className="text-gray-500 mb-10 max-w-2xl mx-auto">
-            Airport arrivals, hotel transfers, island tours — Raymond provides prompt, professional private transportation.
-            All prices are regulated and based on 1–2 passengers. Request a quote and Raymond will respond via WhatsApp.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-            {[
-              { icon: '✈️', label: 'Airport Arrivals', desc: 'Pre-arranged pickup with meet & greet. Regulated fares.' },
-              { icon: '🏨', label: 'Hotel Transfers', desc: 'Door-to-door service to any resort or hotel on the island.' },
-              { icon: '🌴', label: 'Island Tours', desc: 'Full or half-day private tours. Raymond knows every corner of Antigua.' },
-            ].map((item) => (
-              <div key={item.label} className="bg-[#F8FAFC] rounded-2xl px-6 py-7 border border-gray-100 text-center">
-                <div className="text-4xl mb-3">{item.icon}</div>
-                <div className="font-bold text-[#1B3A5C] mb-1">{item.label}</div>
-                <div className="text-sm text-gray-500">{item.desc}</div>
-              </div>
-            ))}
-          </div>
-          <Link
-            href="/taxi"
-            className="inline-block bg-[#16A34A] hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors shadow-md"
-          >
-            Request a Taxi Quote
-          </Link>
-        </div>
-      </section>
-
-      {/* WhatsApp CTA Banner */}
+      {/* WhatsApp CTA */}
       <section className="bg-[#16A34A] py-10 px-4">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white">
           <div>
-            <h3 className="text-2xl font-bold mb-1">Need help deciding?</h3>
-            <p className="text-green-100">Chat with us on WhatsApp — we usually respond within minutes.</p>
+            <h3 className="text-2xl font-bold mb-1">Not sure which service you need?</h3>
+            <p className="text-green-100">Message us on WhatsApp and we&apos;ll point you in the right direction.</p>
           </div>
           <a
             href="https://wa.me/12687345338"

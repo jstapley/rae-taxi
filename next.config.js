@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Standard Next.js 14 config — no special options needed for pilot phase
   images: {
     domains: ['mkegrugusxbmkoenadbm.supabase.co'],
+  },
+  async redirects() {
+    return [
+      { source: '/vehicles', destination: '/car-rental', permanent: true },
+    ];
   },
 };
 

@@ -64,12 +64,12 @@ export async function POST(request) {
     // Send email notification (best effort)
     try {
       await resend.emails.send({
-        from: 'Everyone Loves Raymond <bookings@privateluxurytransportationantigua.com>',
-        to: 'rae.js.peters@gmail.com',
+        from: 'Peridot Car Rentals <bookings@privateluxurytransportationantigua.com>',
+        to: 'peridotcarrentals@gmail.com',
         bcc: 'jeff@stapleyinc.com',
-        subject: `New Rental Booking — ${customer_name.trim()}`,
+        subject: `New Car Rental Booking — ${customer_name.trim()}`,
         html: `
-          <h2>New Vehicle Rental Booking</h2>
+          <h2>New Car Rental Booking — Peridot Car Rentals</h2>
           <table cellpadding="6" style="font-family:sans-serif;font-size:14px;">
             <tr><td><strong>Name</strong></td><td>${customer_name.trim()}</td></tr>
             <tr><td><strong>Phone</strong></td><td>${customer_phone.trim()}</td></tr>

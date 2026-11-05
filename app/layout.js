@@ -103,7 +103,8 @@ export default function RootLayout({ children }) {
               <h4 className="font-semibold mb-2 text-[#F59E0B]">Quick Links</h4>
               <ul className="space-y-1 text-blue-200 text-sm">
                 <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
-                <li><a href="/vehicles" className="hover:text-white transition-colors">Our Fleet</a></li>
+                <li><a href="/taxi" className="hover:text-white transition-colors">Taxi Service</a></li>
+                <li><a href="/car-rental" className="hover:text-white transition-colors">Car Rentals</a></li>
                 <li><a href="/taxi" className="hover:text-white transition-colors">Taxi Service</a></li>
               </ul>
             </div>

@@ -28,6 +28,7 @@ export function middleware(request) {
   if (
     pathname.startsWith('/blog') ||
     pathname.startsWith('/vehicles') ||
+    pathname.startsWith('/car-rental') ||
     pathname.startsWith('/taxi') ||
     pathname.startsWith('/contact') ||
     pathname === '/'
