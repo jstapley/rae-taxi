@@ -24,14 +24,17 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
-  // Public routes — never rewrite, let them render normally
+  // Public routes — redirect to the www domain so they always render correctly
   if (
     pathname.startsWith('/blog') ||
     pathname.startsWith('/vehicles') ||
     pathname.startsWith('/taxi') ||
-    pathname.startsWith('/contact')
+    pathname.startsWith('/contact') ||
+    pathname === '/'
   ) {
-    return NextResponse.next();
+    const wwwUrl = request.nextUrl.clone();
+    wwwUrl.hostname = 'www.privateluxurytransportationantigua.com';
+    return NextResponse.redirect(wwwUrl, { status: 302 });
   }
 
   // Rewrite the root and any sub-paths to their /admin equivalent
