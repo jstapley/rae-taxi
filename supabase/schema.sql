@@ -73,10 +73,12 @@ create table "rae-taxi".taxi_requests (
 );
 
 -- Seed data
-insert into "rae-taxi".vehicles (name, make, model, year, seats, daily_rate, description) values
-  ('RAV4', 'Toyota', 'RAV4', 2013, 5, 75.00, 'Comfortable SUV perfect for exploring the island. Air-conditioned with ample boot space.'),
-  ('Voxy', 'Toyota', 'Voxy', 2025, 8, 110.00, 'Brand new spacious minivan ideal for groups and families. Features modern amenities.'),
-  ('Fit', 'Honda', 'Fit', 2018, 4, 55.00, 'Economical and easy to drive. Great fuel efficiency for getting around Antigua.');
+insert into "rae-taxi".vehicles (name, make, model, year, seats, daily_rate, description, image_url, color) values
+  ('RAV4', 'Toyota', 'RAV4', 2013, 5, 75.00, 'Comfortable SUV perfect for exploring the island. Air-conditioned with ample boot space.', '/vehicles/rav4.png', 'White'),
+  ('Voxy', 'Toyota', 'Voxy', 2025, 8, 110.00, 'Brand new spacious minivan ideal for groups and families. Features modern amenities.', null, 'White'),
+  ('Fit', 'Honda', 'Fit', 2018, 4, 55.00, 'Economical and easy to drive. Great fuel efficiency for getting around Antigua.', null, 'White'),
+  ('CR-V', 'Honda', 'CR-V', 2014, 5, 70.00, 'Reliable compact SUV, ideal for couples or small families exploring Antigua. Comfortable ride with air conditioning and good fuel efficiency.', '/vehicles/honda-crv.png', 'White'),
+  ('Voxy 2009', 'Toyota', 'Voxy', 2009, 8, 80.00, 'Spacious 8-seater minivan perfect for groups and families. Great value for multi-day island adventures with plenty of room for luggage.', '/vehicles/toyota-voxy.png', 'White');
 
 create table "rae-taxi".contact_messages (
   id uuid primary key default gen_random_uuid(),
